@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(result!=ans && !finished)
             resultView.setText("Wrong");
-        else if(finished)
-            resultView.setText("Game Over");
         if(!finished) {
             play();
         }
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "You solved "+String.valueOf(questionsSolved)+" questions.", Toast.LENGTH_SHORT).show();
                 Button play_again=findViewById(R.id.play_again);
                 play_again.setVisibility(View.VISIBLE);
+                resultView.setText("Game Over");
             }
         }.start();
     }
