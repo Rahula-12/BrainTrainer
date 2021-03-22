@@ -1,9 +1,6 @@
 package com.example.braintrainer;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,20 +10,23 @@ import android.os.Bundle;
 
 import java.util.*;
 
-import static android.graphics.Color.GRAY;
-import static android.graphics.Color.GREEN;
-
 public class MainActivity extends AppCompatActivity {
     int ans;
     Button[] buttons=new Button[4];
     CountDownTimer countDownTimer;
-    long time=31000;
+    long time=3000;
     Random random1=new Random();
     int questionsSolved;
     boolean finished=false;
     TextView counter;
     TextView resultView;
     int numberOfquestions;
+    Button close;
+    public void close(View view)
+    {
+        finish();
+        System.exit(0);
+    }
     public void check(View view)
     {
          Button temp=(Button)view;
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Button play_again=findViewById(R.id.play_again);
                 play_again.setVisibility(View.VISIBLE);
                 resultView.setText("Game Over");
+                close.setVisibility(View.VISIBLE);
             }
         }.start();
     }
@@ -99,9 +100,12 @@ public class MainActivity extends AppCompatActivity {
     public void start(View view)
     {
         Button play=findViewById(R.id.play);
+        Button exit=findViewById(R.id.exit2);
         play.setVisibility(View.INVISIBLE);
         Button play_again=findViewById(R.id.play_again);
         play_again.setVisibility(View.INVISIBLE);
+        exit.setVisibility(View.INVISIBLE);
+        close.setVisibility(View.INVISIBLE);
         finished=false;
         questionsSolved=0;
         numberOfquestions=0;
@@ -126,5 +130,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         resultView=(TextView)findViewById(R.id.result);
         counter=(TextView)findViewById(R.id.counter);
+        close=findViewById(R.id.close);
     }
 }
